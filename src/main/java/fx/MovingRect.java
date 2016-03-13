@@ -23,11 +23,11 @@ public class MovingRect extends Application {
 	public void start(Stage ps) throws Exception {
 		ps.setTitle("FX");
 		Group grp = new Group();
-		Node node = new Rectangle(50, 50, Color.web("yellow", 0.9));
+		Node node = new Rectangle(50, 50, Color.web("F0F024", 0.9));
 		grp.getChildren().add(node);
-		Color white = Color.WHITE;
-		white.darker();
-		Scene scene = new Scene(grp, 800, 600, white);
+		//Color white = Color.WHITE;
+		//white.darker();
+		Scene scene = new Scene(grp, 800, 600, Color.BLACK);
 		ps.setScene(scene);
 		ps.show();
 
