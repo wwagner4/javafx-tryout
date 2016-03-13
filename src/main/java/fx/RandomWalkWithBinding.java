@@ -30,11 +30,11 @@ public class RandomWalkWithBinding extends Application {
 
 		List<Node> nodes = new ArrayList<>();
 		List<Elem> elems = new ArrayList<>();
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 50; i++) {
 			Elem e = new Elem(width * 0.5, height * 0.5);
 
-			Color col = Color.hsb(ran.nextDouble() * 360, 1, 1.0, 0.05);
-			for (int j = 10; j < 350; j += 20) {
+			Color col = Color.hsb(ran.nextDouble() * 360, 1, 1.0, 0.1);
+			for (int j = 10; j < 190; j += 15) {
 				Node node = new Circle(j, col);
 				node.translateXProperty().bind(e.x);
 				node.translateYProperty().bind(e.y);
@@ -48,7 +48,7 @@ public class RandomWalkWithBinding extends Application {
 
 		Group grp = new Group();
 		grp.getChildren().addAll(nodes);
-		Color bgCol = Color.WHITE;
+		Color bgCol = Color.BLACK;
 		Scene scene = new Scene(grp, width, height, bgCol);
 		ps.setScene(scene);
 		ps.show();
@@ -57,7 +57,7 @@ public class RandomWalkWithBinding extends Application {
 
 			@Override
 			public void handle(long now) {
-				pause(500);
+				pause(50);
 				for (Elem elem : elems) {
 					double dx = ranDiff();
 					double dy = ranDiff();
@@ -75,7 +75,7 @@ public class RandomWalkWithBinding extends Application {
 	}
 
 	protected double ranDiff() {
-		double span = 50;
+		double span = 15;
 		return ran.nextDouble() * span - span * 0.5;
 	}
 
