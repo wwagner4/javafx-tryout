@@ -25,6 +25,7 @@ public class RandomWalkCanvas extends Application {
 
 	final double width = 600;
 	final double height = 600;
+	double size = 200;
 
 	@Override
 	public void start(Stage ps) throws Exception {
@@ -46,10 +47,11 @@ public class RandomWalkCanvas extends Application {
 		new AnimationTimer() {
 
 			List<Elem> elems;
+			Paint bg = Color.rgb(255, 255, 255, 0.1);
 
 			{
 				elems = new ArrayList<RandomWalkCanvas.Elem>();
-				for (int i = 0; i < 2000; i++) {
+				for (int i = 0; i < 100; i++) {
 					elems.add(new Elem(width * 0.5, height * 0.5, createRandomFill()));
 				}
 
@@ -57,13 +59,16 @@ public class RandomWalkCanvas extends Application {
 
 			@Override
 			public void handle(long now) {
+				context.setFill(bg);
+				context.fillRect(0, 0, width, height);
 				for (Elem elem : elems) {
 					double dx = ranDiff();
 					double dy = ranDiff();
 					elem.addX(dx);
 					elem.addY(dy);
 					context.setFill(elem.p);
-					context.fillArc(elem.x, elem.y, 100, 100, 0, 360, ArcType.ROUND);
+					context.fillRect(elem.x, elem.y, size, size);
+					
 					//System.out.println(elem);
 				}
 			}
@@ -71,7 +76,7 @@ public class RandomWalkCanvas extends Application {
 	}
 
 	protected Paint createRandomFill() {
-		Color re = Color.hsb(ran.nextInt(360), 1.0, 0.5, 0.07);
+		Color re = Color.hsb(ran.nextInt(360), 1.0, 0.5, 0.1);
 		return re;
 	}
 
@@ -94,14 +99,14 @@ public class RandomWalkCanvas extends Application {
 		}
 
 		public void addX(double dx) {
-			if (x < 0) x = 0;
-			if (x > width) x = width;
+			if (x < 0 - size) x = 0;
+			if (x > width + size) x = width;
 			x += dx;
 		}
 		
 		public void addY(double dy) {
-			if (y < 0) y = 0;
-			if (y > height) y = height;
+			if (y < 0 - size) y = 0;
+			if (y > height + size) y = height;
 			y += dy;
 		}
 		
