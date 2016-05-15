@@ -10,6 +10,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
@@ -46,12 +47,12 @@ public class RandomWalkCanvas extends Application {
 		new AnimationTimer() {
 
 			List<Elem> elems;
-			Paint bg = Color.rgb(255, 255, 255, 0.1);
+			Paint bg = Color.rgb(255, 255, 255, 1.0);
 
 			{
 				elems = new ArrayList<RandomWalkCanvas.Elem>();
-				for (int i = 0; i < 100; i++) {
-					elems.add(new Elem(width * 0.5, height * 0.5, createRandomFill()));
+				for (int i = 0; i < 2; i++) {
+					elems.add(new Elem(width * 0.1, height * 0.1, createRandomFill()));
 				}
 
 			}
@@ -65,9 +66,9 @@ public class RandomWalkCanvas extends Application {
 					double dy = ranDiff();
 					elem.addX(dx);
 					elem.addY(dy);
-					context.setFill(elem.p);
-					context.fillRect(elem.x, elem.y, size, size);
-					
+					//context.setFill(elem.p);
+					//context.fillRect(elem.x, elem.y, size, size);
+					context.drawImage(new Image("fish.png"), elem.x, elem.y);
 					//System.out.println(elem);
 				}
 			}
@@ -80,7 +81,7 @@ public class RandomWalkCanvas extends Application {
 	}
 
 	protected double ranDiff() {
-		double span = 10;
+		double span = 50;
 		return ran.nextDouble() * span - span * 0.5;
 	}
 
