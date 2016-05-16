@@ -52,7 +52,7 @@ public class RandomWalkCanvas extends Application {
 			{
 				elems = new ArrayList<RandomWalkCanvas.Elem>();
 				for (int i = 0; i < 2; i++) {
-					elems.add(new Elem(width * 0.1, height * 0.1, createRandomFill()));
+					elems.add(new Elem(width * 0.1, height * 0.1));
 				}
 
 			}
@@ -89,13 +89,11 @@ public class RandomWalkCanvas extends Application {
 
 		private double x;
 		private double y;
-		private Paint p;
 
-		public Elem(double x, double y, Paint p) {
+		public Elem(double x, double y) {
 			super();
 			this.x = x;
 			this.y = y;
-			this.p = p;
 		}
 
 		public void addX(double dx) {
